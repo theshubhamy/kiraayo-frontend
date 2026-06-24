@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Hammer, Heart, ShieldAlert } from "lucide-react";
 
 export default function Footer() {
@@ -94,36 +95,36 @@ export default function Footer() {
             </h4>
             <ul className="mt-4 space-y-2.5 text-xs sm:text-sm">
               <li>
-                <a
-                  href="#features"
+                <Link
+                  href="/about"
                   className="hover:text-amber-500 transition-colors"
                 >
-                  Features
-                </a>
+                  About Us
+                </Link>
               </li>
               <li>
-                <a
-                  href="#how-it-works"
+                <Link
+                  href="/how-it-works"
                   className="hover:text-amber-500 transition-colors"
                 >
                   How It Works
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#catalog"
+                <Link
+                  href="/catalog"
                   className="hover:text-amber-500 transition-colors"
                 >
                   Explore Fleet
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#testimonials"
+                <Link
+                  href="/contact"
                   className="hover:text-amber-500 transition-colors"
                 >
-                  Customer Reviews
-                </a>
+                  Contact Us
+                </Link>
               </li>
             </ul>
           </div>
@@ -136,15 +137,13 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5 text-xs sm:text-sm text-zinc-500">
               <li className="flex items-center gap-1.5 hover:text-zinc-300">
                 <ShieldAlert className="h-3.5 w-3.5 text-amber-500" />
-                GST Compliant (18%)
+                <Link href="/privacy-policy" className="hover:text-amber-500 transition-colors">
+                  Privacy Policy (DPDP Act)
+                </Link>
               </li>
               <li className="flex items-center gap-1.5 hover:text-zinc-300">
                 <ShieldAlert className="h-3.5 w-3.5 text-amber-500" />
                 RBI Payment Guidelines
-              </li>
-              <li className="flex items-center gap-1.5 hover:text-zinc-300">
-                <ShieldAlert className="h-3.5 w-3.5 text-amber-500" />
-                DPDP Act Compliant
               </li>
               <li className="flex items-center gap-1.5 hover:text-zinc-300">
                 <ShieldAlert className="h-3.5 w-3.5 text-amber-500" />
@@ -160,31 +159,45 @@ export default function Footer() {
             </h4>
             <ul className="mt-4 space-y-2.5 text-xs sm:text-sm">
               <li>
-                <span className="text-zinc-500">Email:</span>{" "}
-                support@kiraayo.com
+                <span className="text-zinc-550">Email:</span>{" "}
+                <Link href="/contact" className="hover:text-amber-500 transition-colors">
+                  support@kiraayo.com
+                </Link>
               </li>
               <li>
-                <span className="text-zinc-500">Phone:</span> +91 80 4567 8910
+                <span className="text-zinc-550">Phone:</span> +91 80 4567 8910
               </li>
               <li>
-                <span className="text-zinc-500">HQ:</span> Bangalore, KA, India
+                <span className="text-zinc-550">HQ:</span> Bangalore, KA, India
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Socials & Copyright */}
-        <div className="pt-8 border-t border-zinc-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-600">
-          <div>
-            &copy; {new Date().getFullYear()} Kiraayo. All rights reserved.
+        <div className="pt-8 border-t border-zinc-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-650">
+          <div className="flex flex-wrap items-center gap-3">
+            <span>&copy; {new Date().getFullYear()} Kiraayo. All rights reserved.</span>
+            <span>&bull;</span>
+            <Link href="/privacy-policy" className="hover:text-zinc-300 transition-colors">
+              Privacy
+            </Link>
+            <span>&bull;</span>
+            <Link href="/about" className="hover:text-zinc-300 transition-colors">
+              About
+            </Link>
+            <span>&bull;</span>
+            <Link href="/contact" className="hover:text-zinc-300 transition-colors">
+              Contact
+            </Link>
           </div>
 
           <div className="flex gap-4">
-            <a href="#" className="hover:text-zinc-300" aria-label="LinkedIn">
-              &bull; Made with{" "}
+            <span className="text-zinc-600">
+              Made with{" "}
               <Heart className="inline-block h-3.5 w-3.5 text-amber-500 fill-current" />{" "}
               in India.
-            </a>
+            </span>
           </div>
         </div>
       </div>

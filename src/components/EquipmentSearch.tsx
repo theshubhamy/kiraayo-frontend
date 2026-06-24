@@ -1,7 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useState } from "react";
-import { Search, MapPin, BadgeCheck, Check, Sparkles, X, Star } from "lucide-react";
+import {
+  Search,
+  MapPin,
+  BadgeCheck,
+  Check,
+  Sparkles,
+  X,
+  Star,
+} from "lucide-react";
 
 interface Equipment {
   id: number;
@@ -16,6 +25,7 @@ interface Equipment {
     label: string;
     value: string;
   }[];
+  imagePath: string;
   svgPath: string; // fallback SVG representation if image is missing
 }
 
@@ -34,6 +44,7 @@ const mockEquipment: Equipment[] = [
       { label: "Engine Power", value: "133 HP" },
       { label: "Bucket Capacity", value: "1.0 m³" },
     ],
+    imagePath: "/images/excavator.png",
     svgPath: "M5 19h14M8 12l4-4 4 4m-4-4v11",
   },
   {
@@ -50,6 +61,7 @@ const mockEquipment: Equipment[] = [
       { label: "Operating Weight", value: "7,460 kg" },
       { label: "Loader Bucket", value: "1.1 m³" },
     ],
+    imagePath: "/images/jcb.png",
     svgPath: "M3 10h18M6 6l6 6 6-6",
   },
   {
@@ -66,6 +78,7 @@ const mockEquipment: Equipment[] = [
       { label: "Boom Length", value: "57 meters" },
       { label: "Engine", value: "Cummins 210 kW" },
     ],
+    imagePath: "/images/crane.png",
     svgPath: "M12 3v16M8 7l4-4 4 4",
   },
   {
@@ -82,6 +95,7 @@ const mockEquipment: Equipment[] = [
       { label: "Concrete Pressure", value: "112 Bar" },
       { label: "Delivery Cylinder", value: "230 mm" },
     ],
+    imagePath: "/images/pump.png",
     svgPath: "M5 8h14M5 12h14M5 16h14",
   },
   {
@@ -98,6 +112,7 @@ const mockEquipment: Equipment[] = [
       { label: "Drum Width", value: "2,150 mm" },
       { label: "Engine Power", value: "110 HP" },
     ],
+    imagePath: "/images/roller.png",
     svgPath: "M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0",
   },
   {
@@ -114,11 +129,19 @@ const mockEquipment: Equipment[] = [
       { label: "Operating Weight", value: "7,430 kg" },
       { label: "Backhoe Bucket", value: "0.27 m³" },
     ],
+    imagePath: "/images/earthmaster.png",
     svgPath: "M3 12h18M12 3v18",
   },
 ];
 
-const categories = ["All", "Excavators", "Loaders", "Cranes", "Mixers & Pumps", "Rollers"];
+const categories = [
+  "All",
+  "Excavators",
+  "Loaders",
+  "Cranes",
+  "Mixers & Pumps",
+  "Rollers",
+];
 
 export default function EquipmentSearch() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -127,9 +150,11 @@ export default function EquipmentSearch() {
   const [isBooking, setIsBooking] = useState(false);
 
   const filteredEquipment = mockEquipment.filter((eq) => {
-    const matchesCategory = selectedCategory === "All" || eq.category === selectedCategory;
-    const matchesSearch = eq.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          eq.location.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "All" || eq.category === selectedCategory;
+    const matchesSearch =
+      eq.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      eq.location.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -142,9 +167,11 @@ export default function EquipmentSearch() {
   };
 
   return (
-    <section id="catalog" className="py-24 bg-zinc-50 dark:bg-zinc-900/10 border-b border-zinc-200/50 dark:border-zinc-800/50 relative">
+    <section
+      id="catalog"
+      className="py-24 bg-zinc-50 dark:bg-zinc-900/10 border-b border-zinc-200/50 dark:border-zinc-800/50 relative"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-xl">
@@ -152,7 +179,8 @@ export default function EquipmentSearch() {
               Browse Machinery Catalog
             </h2>
             <p className="mt-3 text-sm sm:text-base text-zinc-500 dark:text-zinc-400">
-              Select category and browse available machinery listings directly in our database. Live rates listed.
+              Select category and browse available machinery listings directly
+              in our database. Live rates listed.
             </p>
           </div>
 
@@ -195,17 +223,40 @@ export default function EquipmentSearch() {
                 className="flex flex-col rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/50 shadow-sm overflow-hidden hover:shadow-xl hover:border-amber-500/20 transition-all duration-300 group"
               >
                 {/* Equipment Graphic Header */}
-                <div className="relative aspect-[16/9] bg-gradient-to-br from-amber-500/10 via-zinc-100 to-amber-500/5 dark:from-amber-500/15 dark:via-zinc-800 dark:to-zinc-900 flex items-center justify-center border-b border-zinc-200/30 dark:border-zinc-800/30">
-                  {/* Heavy equipment mock SVG shape */}
-                  <svg className="w-16 h-16 text-amber-500 opacity-60 dark:opacity-50 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d={eq.svgPath} strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/90 dark:bg-zinc-950/90 text-[10px] font-bold shadow-sm">
+                <div className="relative aspect-[16/9] bg-zinc-100 dark:bg-zinc-800 overflow-hidden border-b border-zinc-200/30 dark:border-zinc-800/30">
+                  {eq.imagePath ? (
+                    <img
+                      src={eq.imagePath}
+                      alt={eq.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-amber-500/10 via-zinc-100 to-amber-500/5 dark:from-amber-500/15 dark:via-zinc-800 dark:to-zinc-900 flex items-center justify-center">
+                      <svg
+                        className="w-16 h-16 text-amber-500 opacity-60 dark:opacity-50 group-hover:scale-110 transition-transform duration-300"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                      >
+                        <path
+                          d={eq.svgPath}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  )}
+
+                  {/* Dark overlay for text/badge legibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10" />
+
+                  <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/95 dark:bg-zinc-950/95 text-[10px] font-bold shadow-md text-zinc-800 dark:text-zinc-200">
                     <MapPin className="h-3 w-3 text-amber-500" />
                     {eq.location}
                   </span>
                   {eq.operator && (
-                    <span className="absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-500 text-white text-[10px] font-extrabold shadow-sm">
+                    <span className="absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-500 text-white text-[10px] font-extrabold shadow-md">
                       <Sparkles className="h-3 w-3 fill-current" />
                       Operator
                     </span>
@@ -227,10 +278,15 @@ export default function EquipmentSearch() {
                       <div className="flex text-amber-500">
                         <Star className="h-3.5 w-3.5 fill-current" />
                       </div>
-                      <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">{eq.rating}</span>
-                      <span className="text-[10px] text-zinc-400">({eq.reviews} reviews)</span>
+                      <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">
+                        {eq.rating}
+                      </span>
+                      <span className="text-[10px] text-zinc-400">
+                        ({eq.reviews} reviews)
+                      </span>
                       <span className="inline-flex items-center ml-auto text-[10px] font-bold text-emerald-500">
-                        <BadgeCheck className="h-3.5 w-3.5 mr-0.5 fill-emerald-500/10" /> Verified
+                        <BadgeCheck className="h-3.5 w-3.5 mr-0.5 fill-emerald-500/10" />{" "}
+                        Verified
                       </span>
                     </div>
 
@@ -252,9 +308,14 @@ export default function EquipmentSearch() {
                   {/* Actions & Price */}
                   <div className="mt-6 flex items-center justify-between gap-4">
                     <div>
-                      <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Day Rate</div>
+                      <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+                        Day Rate
+                      </div>
                       <div className="text-lg font-black text-zinc-900 dark:text-white mt-0.5">
-                        {eq.price} <span className="text-xs font-bold text-zinc-400">/ Day</span>
+                        {eq.price}{" "}
+                        <span className="text-xs font-bold text-zinc-400">
+                          / Day
+                        </span>
                       </div>
                     </div>
                     <button
@@ -284,7 +345,6 @@ export default function EquipmentSearch() {
             </button>
           </div>
         )}
-
       </div>
 
       {/* Loading Modal Overlay */}
@@ -292,8 +352,12 @@ export default function EquipmentSearch() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
           <div className="p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/20 max-w-sm w-full mx-4 text-center shadow-2xl flex flex-col items-center">
             <div className="w-12 h-12 rounded-full border-4 border-amber-500 border-t-transparent animate-spin mb-4" />
-            <h3 className="font-bold text-lg text-zinc-900 dark:text-white">Connecting Lister...</h3>
-            <p className="mt-2 text-xs text-zinc-400">Verifying account credentials and checking available timeline...</p>
+            <h3 className="font-bold text-lg text-zinc-900 dark:text-white">
+              Connecting Lister...
+            </h3>
+            <p className="mt-2 text-xs text-zinc-400">
+              Verifying account credentials and checking available timeline...
+            </p>
           </div>
         </div>
       )}
@@ -311,12 +375,19 @@ export default function EquipmentSearch() {
             <div className="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-4">
               <Check className="h-6 w-6 stroke-[3]" />
             </div>
-            <h3 className="font-bold text-lg text-zinc-900 dark:text-white">Booking Requested!</h3>
+            <h3 className="font-bold text-lg text-zinc-900 dark:text-white">
+              Booking Requested!
+            </h3>
             <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-              Your rental request for <span className="font-bold text-zinc-800 dark:text-white">{bookingSuccess}</span> has been dispatched to the verified owner.
+              Your rental request for{" "}
+              <span className="font-bold text-zinc-800 dark:text-white">
+                {bookingSuccess}
+              </span>{" "}
+              has been dispatched to the verified owner.
             </p>
             <div className="mt-6 w-full p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-600 dark:text-amber-400 text-center leading-relaxed">
-              Complete the security Escrow deposit inside the Kiraayo mobile app to lock in these dates.
+              Complete the security Escrow deposit inside the Kiraayo mobile app
+              to lock in these dates.
             </div>
             <button
               onClick={() => setBookingSuccess(null)}

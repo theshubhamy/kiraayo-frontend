@@ -1,71 +1,85 @@
 "use client";
 
 import React, { useState } from "react";
-import { Search, Calendar, CreditCard, Navigation, CheckCircle, PlusCircle, UserCheck, Inbox, Shield, Wallet } from "lucide-react";
+import {
+  Search,
+  Calendar,
+  CreditCard,
+  Navigation,
+  CheckCircle,
+  PlusCircle,
+  UserCheck,
+  Inbox,
+  Shield,
+  Wallet,
+} from "lucide-react";
 
 export default function RoleTabs() {
   const [activeTab, setActiveTab] = useState<"renter" | "lister">("renter");
 
-  const renterSteps = [
+  const customerSteps = [
     {
       icon: Search,
-      title: "1. Discover Equipment",
-      desc: "Browse certified heavy machinery or vehicles filtered by location, price, and operator preference.",
+      title: "1. Discover Fleet",
+      desc: "Browse certified heavy machinery or vehicles. Filters make it easy to find nearby listings.",
     },
     {
       icon: Calendar,
-      title: "2. Choose Dates & Book",
-      desc: "Input your project timeline and select immediate or future delivery directly to your worksite.",
+      title: "2. Reserve Dates",
+      desc: "Select booking dates for your private project, home construction, or development work.",
     },
     {
       icon: CreditCard,
-      title: "3. Pay into Escrow",
-      desc: "Make payment via Razorpay. Funds are securely locked in our digital escrow until you approve the work.",
+      title: "3. Pay via Escrow",
+      desc: "Funds are held in secure escrow. Payout is only dispatched after the work is approved.",
     },
     {
       icon: Navigation,
-      title: "4. Live GPS Tracking",
-      desc: "Monitor dispatch, delivery status, and active hours of the machinery in real time.",
+      title: "4. GPS Tracking",
+      desc: "Track dispatch, delivery, and engine-run times of the machine in real time.",
     },
     {
       icon: CheckCircle,
-      title: "5. Approve & Rate",
-      desc: "Inspect the vehicle on completion, release the payout to the owner, and leave a review.",
+      title: "5. Return & Review",
+      desc: "Sign off on active hours, release escrow payment, and leave a review for the operator.",
     },
   ];
 
-  const listerSteps = [
+  const contractorSteps = [
     {
       icon: PlusCircle,
-      title: "1. Create Your Listing",
-      desc: "Upload photos, set daily/monthly rental rates, operator availability, and listing status.",
+      title: "1. List Fleet & Rent Others",
+      desc: "List your idle vehicles to generate revenue. You can also rent heavy gear from other contractors.",
     },
     {
       icon: UserCheck,
-      title: "2. Quick KYC Verification",
-      desc: "Submit Aadhaar, PAN, and Bank details for instant trust badge verification.",
+      title: "2. KYC Verification",
+      desc: "Verify identity with Aadhaar, PAN, and bank accounts to list or lease machinery.",
     },
     {
       icon: Inbox,
-      title: "3. Accept Bookings",
-      desc: "Review renter profiles, requested dates, and click 'Accept' on booking notifications.",
+      title: "3. Track Inbound & Outbound",
+      desc: "Approve bookings for your listings and manage machinery you are renting from others.",
     },
     {
       icon: Shield,
-      title: "4. Secure Digital Agreement",
-      desc: "System-generated legal terms protect you against damages and late return issues.",
+      title: "4. Tri-Party Contracts",
+      desc: "Legally protect your gear with digital contracts covering damage and late return rules.",
     },
     {
       icon: Wallet,
-      title: "5. Automatic Settlement",
-      desc: "Funds are released directly into your registered bank account minus the 10% platform fee.",
+      title: "5. Payouts & Billing",
+      desc: "Get rent payouts directly to your bank account. Invoices are automatically GST-compliant.",
     },
   ];
 
-  const currentSteps = activeTab === "renter" ? renterSteps : listerSteps;
+  const currentSteps = activeTab === "renter" ? customerSteps : contractorSteps;
 
   return (
-    <section id="how-it-works" className="py-24 bg-zinc-50 dark:bg-zinc-900/20 border-y border-zinc-200/50 dark:border-zinc-800/50">
+    <section
+      id="how-it-works"
+      className="py-24 bg-zinc-50 dark:bg-zinc-900/20 border-y border-zinc-200/50 dark:border-zinc-800/50"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto">
@@ -73,7 +87,7 @@ export default function RoleTabs() {
             How Kiraayo Works
           </h2>
           <p className="mt-4 text-base sm:text-lg text-zinc-500 dark:text-zinc-400">
-            A secure, streamlined ecosystem tailored for both builders needing heavy gear and owners wanting to monetize their fleet.
+            A secure ecosystem where normal users can easily rent machinery, while contractors can list their idle fleet to monetize it AND lease specialized gear from fellow contractors.
           </p>
         </div>
 
@@ -88,7 +102,7 @@ export default function RoleTabs() {
                   : "text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white"
               }`}
             >
-              For Renters (Contractors)
+              Normal Users (Rent Only)
             </button>
             <button
               onClick={() => setActiveTab("lister")}
@@ -98,7 +112,7 @@ export default function RoleTabs() {
                   : "text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white"
               }`}
             >
-              For Listers (Owners)
+              Contractors (List & Rent)
             </button>
           </div>
         </div>
