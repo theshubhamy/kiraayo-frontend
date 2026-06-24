@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -51,16 +51,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="space-y-6">
-                  {/* Phone */}
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 bg-amber-500/10 text-amber-500 rounded-2xl border border-amber-500/20">
-                      <Phone className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="text-[10px] text-zinc-400 uppercase font-bold tracking-wider">Phone Support</div>
-                      <div className="text-sm font-bold mt-0.5">+91 80 4567 8910</div>
-                    </div>
-                  </div>
+
 
                   {/* Email */}
                   <div className="flex items-center gap-4">

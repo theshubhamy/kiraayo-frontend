@@ -165,9 +165,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <span className="text-zinc-550">Phone:</span> +91 80 4567 8910
-              </li>
-              <li>
                 <span className="text-zinc-550">HQ:</span> Bangalore, KA, India
               </li>
             </ul>
