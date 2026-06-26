@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Hammer, Menu, X, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { Menu, X, ArrowRight } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,9 +36,14 @@ export default function Navbar() {
             href="/"
             className="flex-shrink-0 flex items-center gap-2.5 hover:opacity-90 transition-opacity"
           >
-            <div className="p-2.5 bg-amber-500 text-black rounded-xl shadow-md shadow-amber-500/20 flex items-center justify-center">
-              <Hammer className="h-5 w-5 stroke-[2.5]" />
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Kiraayo Logo"
+              width={40}
+              height={40}
+              className="rounded-xl shadow-md shadow-amber-500/20 object-contain"
+              priority
+            />
             <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
               Kiraayo<span className="text-amber-500 font-extrabold">.</span>
             </span>

@@ -2,7 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { Hammer, Heart, ShieldAlert } from "lucide-react";
+import Image from "next/image";
+import { Heart, ShieldAlert } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -76,9 +77,13 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2">
-              <div className="p-2 bg-amber-500 text-black rounded-lg">
-                <Hammer className="h-4 w-4 stroke-[2.5]" />
-              </div>
+              <Image
+                src="/logo.png"
+                alt="Kiraayo Logo"
+                width={36}
+                height={36}
+                className="rounded-lg object-contain"
+              />
               <span className="text-lg font-bold text-white">Kiraayo</span>
             </div>
             <p className="mt-4 text-xs sm:text-sm text-zinc-500 leading-relaxed">
@@ -137,7 +142,10 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5 text-xs sm:text-sm text-zinc-500">
               <li className="flex items-center gap-1.5 hover:text-zinc-300">
                 <ShieldAlert className="h-3.5 w-3.5 text-amber-500" />
-                <Link href="/privacy-policy" className="hover:text-amber-500 transition-colors">
+                <Link
+                  href="/privacy-policy"
+                  className="hover:text-amber-500 transition-colors"
+                >
                   Privacy Policy (DPDP Act)
                 </Link>
               </li>
@@ -160,7 +168,10 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5 text-xs sm:text-sm">
               <li>
                 <span className="text-zinc-550">Email:</span>{" "}
-                <Link href="/contact" className="hover:text-amber-500 transition-colors">
+                <Link
+                  href="/contact"
+                  className="hover:text-amber-500 transition-colors"
+                >
                   support@kiraayo.com
                 </Link>
               </li>
@@ -174,17 +185,28 @@ export default function Footer() {
         {/* Bottom Socials & Copyright */}
         <div className="pt-8 border-t border-zinc-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-650">
           <div className="flex flex-wrap items-center gap-3">
-            <span>&copy; {new Date().getFullYear()} Kiraayo. All rights reserved.</span>
+            <span>
+              &copy; {new Date().getFullYear()} Kiraayo. All rights reserved.
+            </span>
             <span>&bull;</span>
-            <Link href="/privacy-policy" className="hover:text-zinc-300 transition-colors">
+            <Link
+              href="/privacy-policy"
+              className="hover:text-zinc-300 transition-colors"
+            >
               Privacy
             </Link>
             <span>&bull;</span>
-            <Link href="/about" className="hover:text-zinc-300 transition-colors">
+            <Link
+              href="/about"
+              className="hover:text-zinc-300 transition-colors"
+            >
               About
             </Link>
             <span>&bull;</span>
-            <Link href="/contact" className="hover:text-zinc-300 transition-colors">
+            <Link
+              href="/contact"
+              className="hover:text-zinc-300 transition-colors"
+            >
               Contact
             </Link>
           </div>
